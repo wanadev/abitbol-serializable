@@ -1,5 +1,9 @@
 # abitbol-serializable
 
+[![Build Status](https://travis-ci.org/wanadev/abitbol-serializable.svg?branch=master)](https://travis-ci.org/wanadev/abitbol-serializable)
+[![NPM Version](http://img.shields.io/npm/v/abitbol-serializable.svg?style=flat)](https://www.npmjs.com/package/abitbol-serializable)
+[![License](http://img.shields.io/npm/l/abitbol-serializable.svg?style=flat)](https://github.com/wanadev/abitbol-serializable/blob/master/LICENSE)
+
 `abitbol-serializable` is an [abitbol][] class that can serialize its properties. Features:
 
 * Serialize/Unserialize all computed properties that have a getter and a setter,
