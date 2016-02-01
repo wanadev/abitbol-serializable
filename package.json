@@ -1,0 +1,35 @@
+{
+  "name": "abitbol-serializable",
+  "version": "1.0.0",
+  "description": "Serializable classes based on Abitbol classes",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "node ./node_modules/.bin/jshint lib/*.js test/*.js && node ./node_modules/.bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wanadev/abitbol-serializable.git"
+  },
+  "keywords": [
+    "class",
+    "classy",
+    "abitbol",
+    "serializable"
+  ],
+  "author": "Wanadev <http://www.wanadev.fr/>",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/wanadev/abitbol-serializable/issues"
+  },
+  "homepage": "https://github.com/wanadev/abitbol-serializable#readme",
+  "dependencies": {
+    "abitbol": "^1.0.3",
+    "lodash": "^4.1.0",
+    "uuid": "^2.0.1"
+  },
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "jshint": "^2.9.1",
+    "mocha": "^2.4.5"
+  }
+}
