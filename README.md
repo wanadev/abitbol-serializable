@@ -128,4 +128,10 @@ To clone a class, just call the `clone` method of the class;
 * Check you have no circular references into your classes
 
 
+## Changelog
+
+* **1.0.1:** Updates `uuid` dependency to 3.0.0
+* **1.0.0:** Initial release
+
+
 [abitbol]: https://github.com/wanadev/abitbol
