@@ -1,8 +1,6 @@
-# abitbol-serializable
-
-[![Build Status](https://travis-ci.org/wanadev/abitbol-serializable.svg?branch=master)](https://travis-ci.org/wanadev/abitbol-serializable)
-[![NPM Version](http://img.shields.io/npm/v/abitbol-serializable.svg?style=flat)](https://www.npmjs.com/package/abitbol-serializable)
-[![License](http://img.shields.io/npm/l/abitbol-serializable.svg?style=flat)](https://github.com/wanadev/abitbol-serializable/blob/master/LICENSE)
+---
+title: Home
+---
 
 **Abitbol Serializable** is an [abitbol][] class that can serialize its
 properties.
@@ -77,16 +75,4 @@ john.serialize();
 ```
 
 
-## Documentation
-
-* https://wanadev.github.io/abitbol-serializable/
-
-
-## Changelog
-
-* **1.0.2:** Documentation site
-* **1.0.1:** Updates `uuid` dependency to 3.0.0
-* **1.0.0:** Initial release
-
-
-[abitbol]: https://github.com/wanadev/abitbol
+[abitbol]: https://wanadev.github.io/abitbol/using-abitbol.html

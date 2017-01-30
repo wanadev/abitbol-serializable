@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans");
+@import "node_modules/enlightme/style/variables.less";
+
+@abitbol-brown: #281F1A;
+
+// Main
+
+@main-color: #584237;
+@background-color: #D3B378;
+@main-text-color: #111;
+
+// Header links
+
+@header-links-background: @abitbol-brown;
+@header-links-text-color: lighten(@main-color, 70%);
+@header-links-active-background: lighten(@main-color, 10%);
+
+// Header
+
+@header-title-font: "Josefin Sans", Arial, sans-serif;
+@header-title-color: @abitbol-brown;
+@header-title-font-size: 450%;
+
+// Menu
+
+@menu-background-color: #EFE4D1;
+@menu-toc-active-text-color: lighten(@main-color, 15%);
+@menu-item-shadow: inset 0 1px 0 rgba(255, 255, 255, .6),
+                   inset 0 -1px 0 rgba(0, 0, 0, .1);
+
+
+// Content
+
+@content-inline-code-color: @main-color;
+@content-code-block-background: #27241E;;
+
+@content-blockquote-background: #E2D6C3;
+@content-blockquote-color: @main-color;
+
+// Footer
+
+@footer-text-color: lighten(@main-color, 10%);
+
+@import "node_modules/enlightme/style/style.less";
+@import "node_modules/enlightme/style/mobile.less";
+
+header h1 {
+    letter-spacing: 2px;
+
+    span {
+        padding-left: 10px;
+        padding-top: 15px;
+    }
+
+}
