@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="UTF-8" />
+        <title>Abitbol {Serializable}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+            <link rel="shortcut icon" type="image/png" href="images/abitbol-serializable-logo.svg" />
+        
+        
+            <link type="text/css" rel="stylesheet" href="style/abitbol.css" />
+        
+            <link type="text/css" rel="stylesheet" href="style/gruvbox-dark.css" />
+        
+    </head>
+
+    <body class=" page-with-nav">
+
+        <div class="page">
+
+            
+                <div id="toggle-mobile-menu" title="Toggle menu">☰</div>
+            
+
+            
+                <nav class="links">
+                    <ul>
+                        <li><a href="https://github.com/wanadev/abitbol-serializable">Github</a></li><li><a href="https://www.npmjs.com/package/abitbol-serializable">NPM</a></li>
+                    </ul>
+                </nav>
+            
+
+            <header>
+                <h1>
+                    
+                        <img src="images/abitbol-serializable-logo.svg"  alt="Abitbol {Serializable} logo" />
+                    
+                    <span>Abitbol {Serializable}</span>
+                </h1>
+            </header>
+
+            <div class="content">
+
+                
+                    <nav>
+                        
+                            
+
+    <ul class="menu">
+        
+            
+            <li>
+                <a href="index.html" class="active">Home</a>
+                
+            </li>
+        
+            
+            <li>
+                <a href="using-abitbol-serializable.html" >Using Abitbol Serializable</a>
+                
+            </li>
+        
+    </ul>
+
+
+                        
+                    </nav>
+                
+                <article>
+                    <p><strong>Abitbol Serializable</strong> is an <a href="https://wanadev.github.io/abitbol/using-abitbol.html">abitbol</a> class that can serialize its
+properties.</p>
+<p><strong>Features:</strong></p>
+<ul>
+<li>Serialize / Unserialize all computed properties that have a getter and
+a setter,</li>
+<li>Skip properties annotatated with <code>&quot;@serializable false&quot;</code>.</li>
+<li>Use custom serialization function for specific properties.</li>
+</ul>
+<p><strong>Example Class:</strong></p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> SerializableClass = <span class="hljs-built_in">require</span>(<span class="hljs-string">"abitbol-serializable"</span>);
+
+<span class="hljs-keyword">var</span> Person = SerializableClass.$extend({
+
+    <span class="hljs-attr">__name__</span>: <span class="hljs-string">"Person"</span>,  <span class="hljs-comment">// The class name</span>
+
+    __init__: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">params</span>) </span>{
+        <span class="hljs-keyword">this</span>.$data.firstName = <span class="hljs-string">"John"</span>;
+        <span class="hljs-keyword">this</span>.$data.lastName = <span class="hljs-string">"DOE"</span>;
+        <span class="hljs-keyword">this</span>.$data.age = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">this</span>.$<span class="hljs-keyword">super</span>(params);
+    },
+
+    <span class="hljs-attr">getFirstName</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.$data.firstName;
+    },
+
+    <span class="hljs-attr">setFirstName</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">firstName</span>) </span>{
+        <span class="hljs-keyword">this</span>.$data.firstName = firstName;
+    },
+
+    <span class="hljs-attr">getLastName</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.$data.lastName;
+    },
+
+    <span class="hljs-attr">setLastName</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">lastName</span>) </span>{
+        <span class="hljs-keyword">this</span>.$data.lastName = lastName;
+    },
+
+    <span class="hljs-attr">getAge</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-string">"@serializable false"</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.$data.age;
+    },
+
+    <span class="hljs-attr">setAge</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">age</span>) </span>{
+        <span class="hljs-keyword">this</span>.$data.age = age;
+    }
+
+});</code></pre>
+
+<p><strong>Example Serialization:</strong></p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> john = <span class="hljs-keyword">new</span> Person({
+    <span class="hljs-attr">lastName</span>: <span class="hljs-string">"Wayne"</span>,
+    <span class="hljs-attr">age</span>: <span class="hljs-number">72</span>
+});
+
+john.serialize();
+
+<span class="hljs-comment">// -&gt; {</span>
+<span class="hljs-comment">//        __name__: "Person",</span>
+<span class="hljs-comment">//        id: "&lt;an autogenerated uuid&gt;",</span>
+<span class="hljs-comment">//        firstName: "John",</span>
+<span class="hljs-comment">//        lastName: "Wayne"</span>
+<span class="hljs-comment">//    }</span></code></pre>
+
+
+
+                </article>
+            </div>
+
+            <footer>
+                Copyright (c)  2016-2017 Wanadev
+- <a href="http://www.wanadev.fr/">www.wanadev.fr</a><br />
+Unless otherwise specified, this documentation is published under the
+<a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en">cc by-sa 3.0</a> license<br />
+Generated using <a href="https://wanadev.github.io/enlightme/\">Enlight'me</a> 0.1.1
+
+            </footer>
+
+        </div>
+
+        <script>
+
+(function() {
+
+    var MENU_UNFOLDED_CLASS = "mobile-menu-unfolded";
+
+    var menuButton = document.getElementById("toggle-mobile-menu");
+    var menuItems = document.querySelectorAll(".content nav a");
+
+    function getAbsolutePosition(element) {
+        if (typeof(element) == "string") {
+            element = document.getElementById(element);
+        }
+        if (!(element instanceof Element)) {
+            return {x: 0, y: 0};
+        }
+
+        var css;
+        var origElement = element;
+
+        try {
+            css = getComputedStyle(element);
+        } catch (e) {
+            return {x: 0, y: 0};
+        }
+
+        if (!css) {
+            return {x: 0, y: 0};
+        }
+
+        var x = -parseInt(css.borderLeftWidth);
+        var y = -parseInt(css.borderTopWidth);
+
+        while (element.offsetParent) {
+            css = getComputedStyle(element);
+
+            x += element.offsetLeft || 0;
+            x += parseInt(css.borderLeftWidth);
+
+            y += element.offsetTop || 0;
+            y += parseInt(css.borderTopWidth);
+
+            element = element.offsetParent;
+        }
+
+        element = origElement;
+
+        while (element.parentNode && !(element instanceof HTMLBodyElement)) {
+            x -= element.scrollLeft || 0;
+            y -= element.scrollTop || 0;
+            element = element.parentNode;
+        }
+
+        return {x: x, y: y};
+    };
+
+    function openMenu() {
+        document.body.classList.add(MENU_UNFOLDED_CLASS);
+    }
+
+    function closeMenu() {
+        document.body.classList.remove(MENU_UNFOLDED_CLASS);
+    }
+
+    function toggleMenu() {
+        document.body.classList.toggle(MENU_UNFOLDED_CLASS);
+    }
+
+    function _onMenuItemClicked(event) {
+        var href = this.getAttribute("href");
+
+        if (href[0] != "#") {
+            return;
+        }
+
+        event.preventDefault();
+
+        var anchor = href.substr(1, href.length-1);
+        var anchorPosition = getAbsolutePosition(anchor);
+        document.scrollingElement.scrollTop = anchorPosition.y - menuButton.offsetHeight;
+
+        closeMenu();
+    }
+
+    menuButton.onclick = toggleMenu;
+    menuItems.forEach(function(item) {
+        item.onclick = _onMenuItemClicked;
+    });
+
+})();
+
+</script>
+
+    </body>
+
+</html>

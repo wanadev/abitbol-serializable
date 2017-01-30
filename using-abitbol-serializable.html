@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="UTF-8" />
+        <title>Using Abitbol Serializable - Abitbol {Serializable}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+            <link rel="shortcut icon" type="image/png" href="images/abitbol-serializable-logo.svg" />
+        
+        
+            <link type="text/css" rel="stylesheet" href="style/abitbol.css" />
+        
+            <link type="text/css" rel="stylesheet" href="style/gruvbox-dark.css" />
+        
+    </head>
+
+    <body class=" page-with-nav">
+
+        <div class="page">
+
+            
+                <div id="toggle-mobile-menu" title="Toggle menu">☰</div>
+            
+
+            
+                <nav class="links">
+                    <ul>
+                        <li><a href="https://github.com/wanadev/abitbol-serializable">Github</a></li><li><a href="https://www.npmjs.com/package/abitbol-serializable">NPM</a></li>
+                    </ul>
+                </nav>
+            
+
+            <header>
+                <h1>
+                    
+                        <img src="images/abitbol-serializable-logo.svg"  alt="Abitbol {Serializable} logo" />
+                    
+                    <span>Abitbol {Serializable}</span>
+                </h1>
+            </header>
+
+            <div class="content">
+
+                
+                    <nav>
+                        
+                            
+
+    <ul class="menu">
+        
+            
+            <li>
+                <a href="index.html" >Home</a>
+                
+            </li>
+        
+            
+            <li>
+                <a href="using-abitbol-serializable.html" class="active">Using Abitbol Serializable</a>
+                
+                    
+
+    
+    <ul class="toc">
+        
+            <li>
+                <a href="#serialization">Serialization</a>
+                
+            </li>
+        
+            <li>
+                <a href="#unserialization">Unserialization</a>
+                
+                    
+    <ul class="toc">
+        
+            <li>
+                <a href="#constructor">constructor</a>
+                
+            </li>
+        
+            <li>
+                <a href="#serializableclassinstance-unserialize-">serializableClassInstance.unserialize()</a>
+                
+            </li>
+        
+            <li>
+                <a href="#serializableclass-unserialize-">SerializableClass.$unserialize()</a>
+                
+            </li>
+        
+    </ul>
+
+                
+            </li>
+        
+            <li>
+                <a href="#custom-serializers">Custom Serializers</a>
+                
+            </li>
+        
+            <li>
+                <a href="#clonning-a-serializable-class">Clonning a Serializable Class</a>
+                
+            </li>
+        
+            <li>
+                <a href="#about-the-id-property">About the "id" property</a>
+                
+            </li>
+        
+            <li>
+                <a href="#trouble-shooting">Trouble shooting</a>
+                
+            </li>
+        
+    </ul>
+
+
+
+                
+            </li>
+        
+    </ul>
+
+
+                        
+                    </nav>
+                
+                <article>
+                    <h1 id="using-abitbol-serializable">Using Abitbol Serializable</h1>
+<p>Using <strong>Abitbol Serializable</strong> classes is easy: just create your class like any
+other <strong>Abitbol</strong> class and that's it. Abitbol Serializable classes can
+automatically serialize any computed property that have a getter <strong>and</strong>
+a setter:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> SerializableClass = <span class="hljs-built_in">require</span>(<span class="hljs-string">"abitbol-serializable"</span>);
+
+<span class="hljs-keyword">var</span> Demo = SerializableClass.$extend({
+
+    <span class="hljs-attr">__name__</span>: <span class="hljs-string">"Demo"</span>,                     <span class="hljs-comment">// Must be set to the class name</span>
+
+    __init__: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">params</span>) </span>{          <span class="hljs-comment">// The constructor takes an object containing values for computed properties (optional)</span>
+        <span class="hljs-keyword">this</span>.$data.myProp = <span class="hljs-string">"foo"</span>;        <span class="hljs-comment">// Default values for computed properties</span>
+        <span class="hljs-keyword">this</span>.$data.myProp2 = <span class="hljs-string">"bar"</span>;
+        <span class="hljs-keyword">this</span>.$data.myProp3 = <span class="hljs-string">"baz"</span>;
+        <span class="hljs-keyword">this</span>.$<span class="hljs-keyword">super</span>(params);              <span class="hljs-comment">// Call the super constructor to apply given values</span>
+        ...                               <span class="hljs-comment">// Any other initialization code you need</span>
+    },
+
+    <span class="hljs-attr">getMyProp</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{               <span class="hljs-comment">// this.myProp: serialized propery (getter + setter)</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.$data.myProp;
+    },
+
+    <span class="hljs-attr">setMyProp</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">value</span>) </span>{
+        <span class="hljs-keyword">this</span>.$data.myProp = value;
+    },
+
+    <span class="hljs-attr">getMyProp2</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{              <span class="hljs-comment">// this.myProp2: not serialized (no setter)</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.$data.myProp2;
+    },
+
+    <span class="hljs-attr">getMyProp3</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{              <span class="hljs-comment">// this.myProp3: not serialized (annotated with "@serializable false")</span>
+        <span class="hljs-string">"@serializable false"</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.$data.myProp3;
+    },
+
+    <span class="hljs-attr">setMyProp3</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">value</span>) </span>{
+        <span class="hljs-keyword">this</span>.$data.myProp3 = value;
+    }
+
+});
+
+SerializableClass.$register(Demo);        <span class="hljs-comment">// Register the class (allows automatic unserialization)</span></code></pre>
+
+<p>Using the class is also simple:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> demo = <span class="hljs-keyword">new</span> Demo({
+    <span class="hljs-attr">myProp</span>: <span class="hljs-string">"foobar"</span>
+});</code></pre>
+
+
+<h2 id="serialization">Serialization</h2>
+<p>To serialize, just call the <code>serialize()</code> method:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> data = demo.serialize();
+
+<span class="hljs-comment">// -&gt; {</span>
+<span class="hljs-comment">//        __name__: "Demo",</span>
+<span class="hljs-comment">//        id: "&lt;an autogenerated uuid&gt;",</span>
+<span class="hljs-comment">//        myProp: "foobar"</span>
+<span class="hljs-comment">//    }</span></code></pre>
+
+<h2 id="unserialization">Unserialization</h2>
+<p>There is three way to unserialize an Abitbol Serializable class:</p>
+<ul>
+<li>using the constructor,</li>
+<li>using the <code>unserialize()</code> method,</li>
+<li>and using the <code>$unserialize()</code> static method.</li>
+</ul>
+<h3 id="constructor">constructor</h3>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> demo = <span class="hljs-keyword">new</span> Demo({
+    ...  <span class="hljs-comment">// your data (any serializable property)</span>
+});</code></pre>
+
+<p><strong>NOTE:</strong> To allow this unserialization method to work, you have to call the
+<code>$super()</code> method of your constructor with the params:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> MyClass = SerializableClass.$extend({
+
+    <span class="hljs-attr">__init__</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">params</span>) </span>{
+        ...
+        this.$<span class="hljs-keyword">super</span>(params);
+        ...
+    }
+
+});</code></pre>
+
+<h3 id="serializableclassinstance-unserialize-">serializableClassInstance.unserialize()</h3>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> demo = <span class="hljs-keyword">new</span> Demo();
+demo.unserialize({
+    ...  <span class="hljs-comment">// your data</span>
+});</code></pre>
+
+<h3 id="serializableclass-unserialize-">SerializableClass.$unserialize()</h3>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> demo = SerializableClass.$unserialize({
+    <span class="hljs-attr">__name__</span>: <span class="hljs-string">"Demo"</span>,  <span class="hljs-comment">// The class name</span>
+    ...  <span class="hljs-comment">// your data</span>
+});</code></pre>
+
+<p><strong>NOTE:</strong> To allow this unserialization method to work, you have to set an
+<strong>unique</strong> <code>__name__</code> to the class and to register it:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> MyClass = SerializableClass.$extend({
+
+    <span class="hljs-attr">__name__</span>: <span class="hljs-string">"MyClass"</span>,  <span class="hljs-comment">// Unique classe name</span>
+
+});
+
+<span class="hljs-comment">// Register the class so Abitbol Serializable is able to</span>
+<span class="hljs-comment">// unserialize it automatically</span>
+SerializableClass.$register(MyClass);</code></pre>
+
+
+<h2 id="custom-serializers">Custom Serializers</h2>
+<p>If your class contains serializable properties that are not built-in types
+(<code>String</code>, <code>Number</code>, <code>Boolean</code>, <code>Object</code> and <code>Array</code>), nor a registered
+<code>SerializableClass</code> you have to define custom serialization / unserialization
+functions:</p>
+<pre><code class="hljs javascript">SerializableClass.$addSerializer(<span class="hljs-string">"serializerName"</span>, {
+
+    <span class="hljs-attr">class</span>: YourClass,  <span class="hljs-comment">// not required if you only use the `@serializer` annotation</span>
+
+    serialize: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>{
+        <span class="hljs-comment">// ...</span>
+        <span class="hljs-keyword">return</span> serializedData;
+    },
+
+    <span class="hljs-attr">unserialize</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>{
+        <span class="hljs-comment">// ...</span>
+        <span class="hljs-keyword">return</span> unserializedData;
+    }
+
+});</code></pre>
+
+<p>And then you can annotates all properties that will require your custom
+serializer (if you defined a class in the serializer, this is not required):</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> MyClass = SerializableClass.$extend({
+
+    <span class="hljs-attr">getFoobar</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-string">"@serializer serializerName"</span>;
+        <span class="hljs-comment">// ...</span>
+    },
+
+    <span class="hljs-attr">setFoobar</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">value</span>) </span>{
+        <span class="hljs-comment">// ...</span>
+    }
+
+});</code></pre>
+
+<h2 id="clonning-a-serializable-class">Clonning a Serializable Class</h2>
+<p>To clone a class, just call the <code>clone</code> method of the class:</p>
+<pre><code class="hljs javascript"><span class="hljs-keyword">var</span> demo = <span class="hljs-keyword">new</span> Demo();
+<span class="hljs-keyword">var</span> demo2 = demo.clone();</code></pre>
+
+<p><strong>NOTE:</strong> The <code>id</code> property if the cloned class is automatically regenerated to
+a new random uuid.</p>
+<h2 id="about-the-id-property">About the "id" property</h2>
+<p>Abitbol Serializable generate automatically an uuid for each class instances.
+You can use it safely to reference classes into other classes without making
+circular references.</p>
+<h2 id="trouble-shooting">Trouble shooting</h2>
+<p>If you have any problem using the Abitbol Serializable classes, first check the
+following points:</p>
+<ul>
+<li>Check your class have its <code>__name__</code> attribute defined to something unique,</li>
+<li>Check you have registered your class with <code>SerializableClass.$register(YourClass)</code>,</li>
+<li>Check you have no circular references into your classes.</li>
+</ul>
+<p>If you need further help, please open an issue on Github:</p>
+<ul>
+<li><a href="https://github.com/wanadev/abitbol-serializable/issues">https://github.com/wanadev/abitbol-serializable/issues</a></li>
+</ul>
+
+                </article>
+            </div>
+
+            <footer>
+                Copyright (c)  2016-2017 Wanadev
+- <a href="http://www.wanadev.fr/">www.wanadev.fr</a><br />
+Unless otherwise specified, this documentation is published under the
+<a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en">cc by-sa 3.0</a> license<br />
+Generated using <a href="https://wanadev.github.io/enlightme/\">Enlight'me</a> 0.1.1
+
+            </footer>
+
+        </div>
+
+        <script>
+
+(function() {
+
+    var MENU_UNFOLDED_CLASS = "mobile-menu-unfolded";
+
+    var menuButton = document.getElementById("toggle-mobile-menu");
+    var menuItems = document.querySelectorAll(".content nav a");
+
+    function getAbsolutePosition(element) {
+        if (typeof(element) == "string") {
+            element = document.getElementById(element);
+        }
+        if (!(element instanceof Element)) {
+            return {x: 0, y: 0};
+        }
+
+        var css;
+        var origElement = element;
+
+        try {
+            css = getComputedStyle(element);
+        } catch (e) {
+            return {x: 0, y: 0};
+        }
+
+        if (!css) {
+            return {x: 0, y: 0};
+        }
+
+        var x = -parseInt(css.borderLeftWidth);
+        var y = -parseInt(css.borderTopWidth);
+
+        while (element.offsetParent) {
+            css = getComputedStyle(element);
+
+            x += element.offsetLeft || 0;
+            x += parseInt(css.borderLeftWidth);
+
+            y += element.offsetTop || 0;
+            y += parseInt(css.borderTopWidth);
+
+            element = element.offsetParent;
+        }
+
+        element = origElement;
+
+        while (element.parentNode && !(element instanceof HTMLBodyElement)) {
+            x -= element.scrollLeft || 0;
+            y -= element.scrollTop || 0;
+            element = element.parentNode;
+        }
+
+        return {x: x, y: y};
+    };
+
+    function openMenu() {
+        document.body.classList.add(MENU_UNFOLDED_CLASS);
+    }
+
+    function closeMenu() {
+        document.body.classList.remove(MENU_UNFOLDED_CLASS);
+    }
+
+    function toggleMenu() {
+        document.body.classList.toggle(MENU_UNFOLDED_CLASS);
+    }
+
+    function _onMenuItemClicked(event) {
+        var href = this.getAttribute("href");
+
+        if (href[0] != "#") {
+            return;
+        }
+
+        event.preventDefault();
+
+        var anchor = href.substr(1, href.length-1);
+        var anchorPosition = getAbsolutePosition(anchor);
+        document.scrollingElement.scrollTop = anchorPosition.y - menuButton.offsetHeight;
+
+        closeMenu();
+    }
+
+    menuButton.onclick = toggleMenu;
+    menuItems.forEach(function(item) {
+        item.onclick = _onMenuItemClicked;
+    });
+
+})();
+
+</script>
+
+    </body>
+
+</html>
