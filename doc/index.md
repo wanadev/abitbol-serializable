@@ -9,7 +9,7 @@ properties.
 
 * Serialize / Unserialize all computed properties that have a getter and
   a setter,
-* Skip properties annotatated with `"@serializable false"`.
+* Skip properties annotated with `"@serializable false"`.
 * Use custom serialization function for specific properties.
 
 **Example Class:**
