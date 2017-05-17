@@ -1,5 +1,7 @@
 # abitbol-serializable
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/wanadev/abitbol-serializable.svg)](https://greenkeeper.io/)
+
 [![Build Status](https://travis-ci.org/wanadev/abitbol-serializable.svg?branch=master)](https://travis-ci.org/wanadev/abitbol-serializable)
 [![NPM Version](http://img.shields.io/npm/v/abitbol-serializable.svg?style=flat)](https://www.npmjs.com/package/abitbol-serializable)
 [![License](http://img.shields.io/npm/l/abitbol-serializable.svg?style=flat)](https://github.com/wanadev/abitbol-serializable/blob/master/LICENSE)
