@@ -85,6 +85,7 @@ john.serialize();
 
 ## Changelog
 
+* **2.0.0:** Updates `abitbol` dependency to 2.0.0
 * **1.0.2:** Documentation site
 * **1.0.1:** Updates `uuid` dependency to 3.0.0
 * **1.0.0:** Initial release
