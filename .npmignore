@@ -4,3 +4,5 @@ test
 .travis.yml
 doc
 doc.generated
+.github
+RELEASE.rst

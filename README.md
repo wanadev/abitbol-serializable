@@ -132,6 +132,10 @@ Tu run tests, use the following command:
 
     * Nothing yet ;)
 
+* **v2.0.1:**
+
+    * Updated dependencies (@jbghoul, #12)
+
 * **v2.0.0:**
 
     * Updates `abitbol` dependency to 2.0.0
