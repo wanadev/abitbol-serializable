@@ -77,18 +77,73 @@ john.serialize();
 //    }
 ```
 
+[abitbol]: https://github.com/wanadev/abitbol
+
+
+## Install
+
+To install Abitbol Serializable run the following command:
+
+    npm install abitbol-serializable
+
 
 ## Documentation
 
 * https://wanadev.github.io/abitbol-serializable/
 
 
+## Contributing
+
+### Questions
+
+If you have any question, you can:
+
+* [Open an issue on GitHub][gh-issue]
+* [Ask on discord][discord]
+
+### Bugs
+
+If you found a bug, please [open an issue on Github][gh-issue] with as much information as possible.
+
+### Pull Requests
+
+Please consider [filing a bug][gh-issue] before starting to work on a new feature. This will allow us to discuss the best way to do it. This is of course not necessary if you just want to fix some typo or small errors in the code.
+
+### Coding Style / Lint
+
+To check coding style, run the follwoing command:
+
+    npm run lint
+
+### Tests
+
+Tu run tests, use the following command:
+
+    npm run test
+
+
+[gh-issue]: https://github.com/wanadev/abitbol-serializable/issues
+[discord]: https://discord.gg/BmUkEdMuFp
+
+
 ## Changelog
 
-* **2.0.0:** Updates `abitbol` dependency to 2.0.0
-* **1.0.2:** Documentation site
-* **1.0.1:** Updates `uuid` dependency to 3.0.0
-* **1.0.0:** Initial release
+* **[NEXT]** (changes on master that have not been released yet):
 
+    * Nothing yet ;)
 
-[abitbol]: https://github.com/wanadev/abitbol
+* **v2.0.0:**
+
+    * Updates `abitbol` dependency to 2.0.0
+
+* **v1.0.2:**
+
+    * Documentation site
+
+* **v1.0.1:**
+
+    * Updates `uuid` dependency to 3.0.0
+
+* **v1.0.0:**
+
+    * Initial release
