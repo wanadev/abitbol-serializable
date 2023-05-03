@@ -26,7 +26,7 @@
   "dependencies": {
     "abitbol": "^2.0.0",
     "lodash": "^4.17.11",
-    "uuid": "^3.3.2"
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "enlightme": "^0.1.1",
