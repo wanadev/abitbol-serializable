@@ -23,15 +23,15 @@
   },
   "homepage": "https://github.com/wanadev/abitbol-serializable#readme",
   "dependencies": {
-    "abitbol": "^2.0.0",
-    "lodash": "^4.17.11",
-    "uuid": "^3.3.2"
+    "abitbol": "^2.1.1",
+    "lodash": "^4.17.21",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "enlightme": "^0.1.1",
+    "enlightme": "^0.2.0",
     "expect.js": "^0.3.1",
-    "jshint": "^2.10.2",
-    "mocha": "^6.1.4"
+    "jshint": "^2.13.6",
+    "mocha": "^10.2.0"
   },
   "enlightme": {
     "appName": "Abitbol {Serializable}"
