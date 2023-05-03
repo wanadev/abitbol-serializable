@@ -1,9 +1,9 @@
 # abitbol-serializable
 
-[![Build Status](https://travis-ci.org/wanadev/abitbol-serializable.svg?branch=master)](https://travis-ci.org/wanadev/abitbol-serializable)
+[![Lint and test](https://github.com/wanadev/abitbol-serializable/actions/workflows/node-ci.yml/badge.svg)](https://github.com/wanadev/abitbol-serializable/actions/workflows/node-ci.yml)
 [![NPM Version](http://img.shields.io/npm/v/abitbol-serializable.svg?style=flat)](https://www.npmjs.com/package/abitbol-serializable)
 [![License](http://img.shields.io/npm/l/abitbol-serializable.svg?style=flat)](https://github.com/wanadev/abitbol-serializable/blob/master/LICENSE)
-[![Greenkeeper badge](https://badges.greenkeeper.io/wanadev/abitbol-serializable.svg)](https://greenkeeper.io/)
+[![Discord](https://img.shields.io/badge/chat-Discord-8c9eff?logo=discord&logoColor=ffffff)](https://discord.gg/BmUkEdMuFp)
 
 **Abitbol Serializable** is an [abitbol][] class that can serialize its
 properties.
