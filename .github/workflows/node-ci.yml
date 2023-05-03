@@ -43,5 +43,5 @@ jobs:
 
       - name: "Test with mocha"
         run: |
-          npm runt test
+          npm run test
 
