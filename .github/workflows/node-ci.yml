@@ -7,12 +7,14 @@ on:
       - test/**
       - .jshintrc
       - .github/workflows/node-ci.yml
+      - package.json
   pull_request:
     paths:
       - lib/**
       - test/**
       - .jshintrc
       - .github/workflows/node-ci.yml
+      - package.json
 
 jobs:
 
