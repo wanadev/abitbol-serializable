@@ -8,6 +8,7 @@ on:
       - .jshintrc
       - .github/workflows/node-ci.yml
       - package.json
+      - package-lock.json
   pull_request:
     paths:
       - lib/**
@@ -15,6 +16,7 @@ on:
       - .jshintrc
       - .github/workflows/node-ci.yml
       - package.json
+      - package-lock.json
 
 jobs:
 
