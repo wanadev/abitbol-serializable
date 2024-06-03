@@ -3,6 +3,10 @@
   "version": "2.0.1",
   "description": "Serializable classes based on Abitbol classes",
   "main": "lib/index.js",
+  "types": "types/index.d.ts",
+  "typesVersions": {
+    "*": { "lib/*": ["types/lib/*"] }
+  },
   "scripts": {
     "test": "mocha",
     "lint": "jshint lib/*.js test/*.js"
