@@ -132,6 +132,11 @@ Tu run tests, use the following command:
 
     * Nothing yet ;)
 
+* **v2.0.2:**
+
+    * feat: Added TypeScript type declaration for SerializableClass and serializer (@Pduhard, #26)
+    * misc: Updated dev dependencies (@dependabot)
+
 * **v2.0.1:**
 
     * Updated dependencies (@jbghoul, #12)

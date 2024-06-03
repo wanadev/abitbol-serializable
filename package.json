@@ -1,6 +1,6 @@
 {
   "name": "abitbol-serializable",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Serializable classes based on Abitbol classes",
   "main": "lib/index.js",
   "types": "types/index.d.ts",
