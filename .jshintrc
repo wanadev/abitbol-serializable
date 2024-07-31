@@ -12,6 +12,7 @@
   "globals": {
     "describe": false,
     "it": false,
-    "before": false
+    "before": false,
+    "window": false
   }
 }

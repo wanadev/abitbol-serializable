@@ -131,6 +131,7 @@ Tu run tests, use the following command:
 * **[NEXT]** (changes on master that have not been released yet):
 
     * Nothing yet ;)
+    * feat: Removed dependency to the uuid library. Use browser's secure implementation if available, or a fallback one else (@flozz)
 
 * **v2.0.2:**
 

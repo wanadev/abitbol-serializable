@@ -29,8 +29,7 @@
   "homepage": "https://github.com/wanadev/abitbol-serializable#readme",
   "dependencies": {
     "abitbol": "^2.1.1",
-    "lodash": "^4.17.21",
-    "uuid": "^9.0.0"
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "enlightme": "^0.2.0",
