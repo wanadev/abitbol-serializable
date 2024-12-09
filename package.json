@@ -35,7 +35,7 @@
     "enlightme": "^0.2.0",
     "expect.js": "^0.3.1",
     "jshint": "^2.13.6",
-    "mocha": "^10.2.0"
+    "mocha": "^11.0.1"
   },
   "enlightme": {
     "appName": "Abitbol {Serializable}"
