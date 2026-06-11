@@ -131,6 +131,7 @@ Tu run tests, use the following command:
 * **[NEXT]** (changes on master that have not been released yet):
 
     * feat(serializer): Handled null and array cases to improve performance (@jbghoul, #63)
+    * misc(deps): Updated dependencies (@jbghoul)
 
 * **v2.1.0:**
 
